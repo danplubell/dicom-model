@@ -1,16 +1,15 @@
 module Data.DICOM.Model.DataElement where
 
-import Data.Word 
-import qualified Data.ByteString.Lazy as BL
 import qualified Data.ByteString as BS
+import           Data.Word
 
 type GroupNbr = Word16
 type ElementNbr = Word16
-data DataElement = DataElement { tag      :: (GroupNbr, ElementNbr) 
+data DataElement = DataElement { tag      :: (GroupNbr, ElementNbr)
                                , vr       :: VR
                                , vl       :: Word32
                                , rawValue :: BS.ByteString
-                               } deriving (Show) 
+                               } deriving (Show)
 data VR = AE -- | Application Entity
         | AS -- | Age String
         | AT -- | Attribute Tag
