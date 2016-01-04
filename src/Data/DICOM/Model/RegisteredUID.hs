@@ -1,23 +1,28 @@
+{-# LANGUAGE OverloadedStrings #-}
 module Data.DICOM.Model.RegisteredUID
        (UIDDictionary
        , mkUIDDictionary
        , lookupUIDType
        , lookupUID
+       , DicomUID (..)
        )
        where
 
-import qualified Data.Bimap as DB
+import qualified Data.Bimap      as DB
+import qualified Data.ByteString as DBS
 
-type UIDDictionary = DB.Bimap String DicomUID
+type UIDDictionary = DB.Bimap DBS.ByteString DicomUID
+
 
 mkUIDDictionary::UIDDictionary
 mkUIDDictionary = DB.fromList dicomUIDTable
 
-lookupUIDType::UIDDictionary -> String -> DicomUID
+lookupUIDType::UIDDictionary -> DBS.ByteString -> DicomUID
 lookupUIDType  = (DB.!)
 
-lookupUID::UIDDictionary -> DicomUID -> String
+lookupUID::UIDDictionary -> DicomUID -> DBS.ByteString
 lookupUID = (DB.!>)
+
 
 data DicomUID =  VerificationSOPClass
   | ImplicitVRLittleEndian
@@ -369,7 +374,7 @@ data DicomUID =  VerificationSOPClass
   | UniversalCoordinatedTime
   deriving (Show,Eq,Ord)
 
-dicomUIDTable:: [(String,DicomUID)]
+dicomUIDTable:: [(DBS.ByteString,DicomUID)]
 dicomUIDTable =[("1.2.840.10008.1.1", VerificationSOPClass )
                 ,("1.2.840.10008.1.2", ImplicitVRLittleEndian )
                 ,("1.2.840.10008.1.2.1", ExplicitVRLittleEndian )

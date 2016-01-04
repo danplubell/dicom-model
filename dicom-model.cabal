@@ -20,6 +20,8 @@ library
                        Data.DICOM.Model.DataElement
                        Data.DICOM.Model.Dictionary
                        Data.DICOM.Model.RegisteredUID
+                       Data.DICOM.Model.Parser
+                       Data.DICOM.Model
   build-depends:       base >= 4.7 && < 5
                      , bytestring
                      , containers
