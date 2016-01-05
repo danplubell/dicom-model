@@ -1,10 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Data.DICOM.Model.RegisteredUID
        (UIDDictionary
-       , mkUIDDictionary
-       , lookupUIDType
-       , lookupUID
        , DicomUID (..)
+       , dicomUIDTable
        )
        where
 
@@ -12,16 +10,6 @@ import qualified Data.Bimap      as DB
 import qualified Data.ByteString as DBS
 
 type UIDDictionary = DB.Bimap DBS.ByteString DicomUID
-
-
-mkUIDDictionary::UIDDictionary
-mkUIDDictionary = DB.fromList dicomUIDTable
-
-lookupUIDType::UIDDictionary -> DBS.ByteString -> DicomUID
-lookupUIDType  = (DB.!)
-
-lookupUID::UIDDictionary -> DicomUID -> DBS.ByteString
-lookupUID = (DB.!>)
 
 
 data DicomUID =  VerificationSOPClass

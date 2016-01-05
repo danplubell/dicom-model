@@ -26,6 +26,7 @@ library
                      , bytestring
                      , containers
                      , bimap
+                     , text
   default-language:    Haskell2010
 
 source-repository head
