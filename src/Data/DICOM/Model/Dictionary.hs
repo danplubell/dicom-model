@@ -10,8 +10,8 @@ type DicomDictionary = DM.Map DicomTag DictElement
 data DictElement = DictElement { groupNbr :: Word16
                                , elementNbr:: Word16
                                , vr:: BS.ByteString
-                               , vm::BS.ByteString
                                , name::BS.ByteString
+                               , vm::BS.ByteString
                                , version::BS.ByteString
                                }
                                | Comment
